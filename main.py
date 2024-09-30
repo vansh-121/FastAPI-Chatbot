@@ -11,7 +11,7 @@ from pydantic import BaseModel
 load_dotenv()
 
 # Configure the Google API with the provided key
-genai.configure(api_key=os.getenv("AIzaSyCgg-pNl39IvWMJ2jZQFuAml8XoBJNmQIY"))
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # Load the Gemini Pro model
 model = genai.GenerativeModel("gemini-pro")
