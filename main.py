@@ -11,7 +11,7 @@ from pydantic import BaseModel
 load_dotenv()
 
 # Configure the Google API with the provided key
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=os.getenv("AIzaSyCgg-pNl39IvWMJ2jZQFuAml8XoBJNmQIY"))
 
 # Load the Gemini Pro model
 model = genai.GenerativeModel("gemini-pro")
@@ -46,15 +46,17 @@ def text_to_speech(text):
     tts.save(temp_file_path)
     return temp_file_path
 
-# Root endpoint to describe the API
-@app.get("/")
-def read_root():
-    return {
-        "message": "Welcome to the FSSAI AI Chatbot API. Use the '/ask' endpoint to ask a question and get a response, "
-                   "or the '/text-to-speech' endpoint to convert text to speech."
-    }
+# Test route to check server functionality
+@app.get("/test")
+async def test_route():
+    return {"message": "Test GET route is working"}
 
-# FastAPI endpoint to get a response
+# Root route for testing
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the FastAPI FSSAI Chatbot"}
+
+# FastAPI endpoint to get response from the chatbot
 @app.post("/ask")
 async def ask_question(request: QuestionRequest):
     try:
